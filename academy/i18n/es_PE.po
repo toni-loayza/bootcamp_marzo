@@ -1,0 +1,50 @@
+#. module: academy
+#: model:ir.model.fields,field_description:academy.field_academy_student__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: academy
+#: model:ir.model.fields,field_description:academy.field_academy_student__partner_id
+msgid "Student"
+msgstr "Alumno"
+
+#. module: academy
+#: model:ir.model.fields,field_description:academy.field_academy_student__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: academy
+#: model:ir.model.fields,field_description:academy.field_academy_student__state
+msgid "State"
+msgstr "Estado"
+
+#. module: academy
+#: model:ir.model.fields.selection,name:academy.selection__academy_student__state__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: academy
+#: model:ir.model.fields.selection,name:academy.selection__academy_student__state__posted
+msgid "Posted"
+msgstr "Publicado"
+
+#. module: academy
+#: model:ir.model.fields.selection,name:academy.selection__academy_student__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: academy
+#: model:ir.actions.act_window,name:academy.action_academy_student
+#: model:ir.ui.menu,name:academy.academy_student
+msgid "Students"
+msgstr "Alumnos"
+
+#. module: academy
+#: model:ir.ui.menu,name:academy.academy_root
+msgid "Academy"
+msgstr "Academia"
+
+#. module: academy
+#: model:ir.sequence,name:academy.seq_academy_student
+msgid "Academy Student"
+msgstr "Academia Alumno"
