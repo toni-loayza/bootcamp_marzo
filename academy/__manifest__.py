@@ -5,6 +5,7 @@
     'summary': """Modulo para academia""",
     'depends': ['sale'],
     'data': [
+        'security/academy_security.xml',
         'security/ir.model.access.csv',
         'data/sequence_academy_student.xml',
         'views/academy_student_view.xml',

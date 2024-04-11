@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <menuitem id="academy_root" name="Academy" sequence="30" web_icon="academy,static/description/icon.png">
-            <menuitem id="academy_student" name="Students" sequence="1" action="academy.action_academy_student"/>
+        <menuitem id="academy_root" name="Academy" sequence="30" groups="group_academy_employee" web_icon="academy,static/description/icon.png">
+            <menuitem id="academy_student" name="Students" sequence="1" groups="group_academy_employee" action="academy.action_academy_student"/>
         </menuitem>
     </data>
 </odoo>

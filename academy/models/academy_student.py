@@ -10,6 +10,7 @@ class AcademyStudent(models.Model):
     partner_id = fields.Many2one("res.partner", string="Student", required=True, readonly=False, tracking=True)
     school_id = fields.Many2one("res.partner", string="School", tracking=True)
     employee_id = fields.Many2one("hr.employee", string="Student", tracking=True)
+    hr_icon_display = fields.Selection(related="employee_id.hr_icon_display")
     resource_calendar_id = fields.Many2one("resource.calendar", string="Hour", tracking=True)
     date = fields.Date(string="Date", tracking=True)
     state = fields.Selection(string='State', tracking=True,

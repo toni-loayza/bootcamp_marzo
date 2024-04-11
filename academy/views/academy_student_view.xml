@@ -7,12 +7,27 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="action_confirm" class="oe_highlight" type="object" string="Confirm" invisible="state != 'draft'"/>
+                        <button name="action_confirm" class="oe_highlight" type="object" string="Confirm"
+                                invisible="state != 'draft'" groups="academy.group_academy_manager"/>
                         <button name="action_cancel" type="object" string="Cancel" invisible="state != 'posted'"/>
-                        <button name="action_draft" type="object" string="Reset to draft" invisible="state != 'cancelled'"/>
+                        <button name="action_draft" type="object" string="Reset to draft"
+                                invisible="state != 'cancelled'"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
                     </header>
                     <sheet>
+                        <field name="hr_icon_display" invisible="1"/>
+                        <widget name="web_ribbon" title="Presente" invisible="hr_icon_display != 'presence_present'"/>
+                        <widget name="web_ribbon" title="Presente pero inactivo"
+                                invisible="hr_icon_display != 'presence_absent_active'"/>
+                        <widget name="web_ribbon" title="Ausente" invisible="hr_icon_display != 'presence_absent'"/>
+                        <widget name="web_ribbon" title="Por difinir" bg_color="text-bg-warning"
+                                invisible="hr_icon_display != 'presence_to_define'"/>
+                        <widget name="web_ribbon" title="Sin determinar"
+                                invisible="hr_icon_display != 'presence_undetermined'"/>
+                        <widget name="web_ribbon" title="Con permiso"
+                                invisible="hr_icon_display != 'presence_holiday_absent'"/>
+                        <widget name="web_ribbon" title="Presente pero de vacaciones"
+                                invisible="hr_icon_display != 'presence_holiday_present'"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="name" readonly="1"/>
@@ -25,7 +40,7 @@
                                 <field name="resource_calendar_id" invisible="state == 'draft'"/>
                             </group>
                             <group>
-                                <field name="create_date" readonly="1"/>
+                                <field string="Created on" name="create_date" readonly="1"/>
                                 <field name="date" readonly="state == 'posted'"/>
                                 <field name="school_id" readonly="state == 'posted'"/>
                             </group>
@@ -46,28 +61,42 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="date"/>
+                    <field name="partner_id" column_invisible="context.get('default_move_type') != 'draft'"/>
+                    <field name="employee_id" column_invisible="context.get('default_move_type') == 'draft'"/>
+                    <field name="school_id"/>
+                    <field name="resource_calendar_id"/>
+                    <field name="date" optional="hide"/>
+                    <field name="state"/>
+                    <field name="hr_icon_display" optional="show"/>
                 </tree>
             </field>
         </record>
 
-        <!--        <record id="view_academy_student_search_view" model="ir.ui.view">-->
-        <!--            <field name="name">ProjectName.view_academy_student.search</field>-->
-        <!--            <field name="model">ProjectName.view_academy_student</field>-->
-        <!--            <field name="arch" type="xml">-->
-        <!--                <search string="ModelTitle">-->
-        <!--                    <group expand="1" string="Group By">-->
-        <!--                        <filter string="Example Field" name="example_field" domain="[]"-->
-        <!--                                context="{'group_by':'example_field'}"/>-->
-        <!--                    </group>-->
-        <!--                </search>-->
-        <!--            </field>-->
-        <!--        </record>-->
+        <record id="view_academy_student_search" model="ir.ui.view">
+            <field name="name">academy.student.search</field>
+            <field name="model">academy.student</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="resource_calendar_id"/>
+                    <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Posted" name="posted" domain="[('state', '=', 'posted')]"/>
+                    <filter string="Cancelled" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="School" name="school" domain="[]" context="{'group_by':'school_id'}"/>
+                        <filter string="Hour" name="hour" domain="[]" context="{'group_by':'resource_calendar_id'}"/>
+                        <filter string="State" name="state" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
         <record id="action_academy_student" model="ir.actions.act_window">
             <field name="name">Students</field>
             <field name="res_model">academy.student</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'default_state': 'draft'}</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     Crear alumno

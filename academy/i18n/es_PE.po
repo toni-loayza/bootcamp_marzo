@@ -5,6 +5,7 @@ msgstr "Nombre"
 
 #. module: academy
 #: model:ir.model.fields,field_description:academy.field_academy_student__partner_id
+#: model:ir.model.fields,field_description:academy.field_academy_student__employee_id
 msgid "Student"
 msgstr "Alumno"
 
@@ -48,3 +49,33 @@ msgstr "Academia"
 #: model:ir.sequence,name:academy.seq_academy_student
 msgid "Academy Student"
 msgstr "Academia Alumno"
+
+#. module: academy
+#: model:ir.model.fields,field_description:academy.field_academy_student__resource_calendar_id
+msgid "Hour"
+msgstr "Horario"
+
+#. module: academy
+#: model:ir.model.fields,field_description:academy.field_academy_student__school_id
+msgid "School"
+msgstr "Escuela"
+
+#. module: academy
+#: model_terms:ir.ui.view,arch_db:academy.view_academy_student_form
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: academy
+#: model_terms:ir.ui.view,arch_db:academy.view_academy_student_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: academy
+#: model_terms:ir.ui.view,arch_db:academy.view_academy_student_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: academy
+#: model_terms:ir.ui.view,arch_db:academy.view_academy_student_form
+msgid "Reset to draft"
+msgstr "Restaurar a borrador"
