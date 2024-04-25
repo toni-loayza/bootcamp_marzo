@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hotel_room_form" model="ir.ui.view">
+            <field name="name">hotel.room.form</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_free" type="object" string="Release" class="oe_highlight"
+                                invisible="state == 'free'"/>
+                        <button name="action_busy" type="object" string="Occupy" class="oe_highlight"
+                                invisible="state == 'busy'"/>
+                    </header>
+                    <sheet>
+                        <field name="state" invisible="True"/>
+                        <widget name="web_ribbon" title="Free" bg_color="text-bg-success" invisible="state == 'busy'"/>
+                        <widget name="web_ribbon" title="Busy" bg_color="text-bg-danger" invisible="state == 'free'"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="state == 'busy'"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description" readonly="state == 'busy'"/>
+                                <field name="stars" widget="priority" readonly="state == 'busy'"/>
+                            </group>
+                            <group>
+                                <field name="occupancy_date" readonly="state == 'busy'" invisible="state == 'free'"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hotel_room_tree" model="ir.ui.view">
+            <field name="name">hotel.room.tree</field>
+            <field name="model">hotel.room</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button name="action_free" type="object" string="Release"/>
+                    </header>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="stars" widget="priority"/>
+                    <field name="state" widget="badge"
+                           decoration-success="state == 'free'"
+                           decoration-danger="state == 'busy'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--        <record id="view_hotel_room_search_view" model="ir.ui.view">-->
+        <!--            <field name="name">ProjectName.view_hotel_room.search</field>-->
+        <!--            <field name="model">ProjectName.view_hotel_room</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <search string="ModelTitle">-->
+        <!--                    <group expand="1" string="Group By">-->
+        <!--                        <filter string="Example Field" name="example_field" domain="[]"-->
+        <!--                                context="{'group_by':'example_field'}"/>-->
+        <!--                    </group>-->
+        <!--                </search>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <record id="action_hotel_room" model="ir.actions.act_window">
+            <field name="name">Rooms</field>
+            <field name="res_model">hotel.room</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a roms.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

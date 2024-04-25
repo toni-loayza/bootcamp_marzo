@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="hotel_root" name="Hotel" sequence="25" web_icon="hotels,static/description/icon.png">
+            <menuitem id="hotel_room" name="Room" sequence="1" action="action_hotel_room"/>
+        </menuitem>
+    </data>
+</odoo>

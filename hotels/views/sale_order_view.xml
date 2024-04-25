@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <page name="customer_signature" position="after">
+                    <page string="Rooms" name="room_ids">
+                        <field name="room_ids" widget="section_and_note_one2many" readonly="state == 'sale' or locked"
+                               options="{'no_create': True}" domain="[('state', '=', 'free')]">
+                            <tree create="0">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="stars" widget="priority" readonly="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>
